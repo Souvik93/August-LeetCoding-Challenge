@@ -26,6 +26,8 @@ Note: The input will be a non-empty word consisting of uppercase and lowercase l
 
 */
 
+// Explanation - https://youtu.be/HlVJbwguipU
+
 class Solution {
     public boolean detectCapitalUse(String word) {
         
