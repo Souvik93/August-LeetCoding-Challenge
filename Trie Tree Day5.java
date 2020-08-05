@@ -1,3 +1,29 @@
+/*
+
+Design a data structure that supports the following two operations:
+
+void addWord(word)
+bool search(word)
+search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+
+Example:
+
+addWord("bad")
+addWord("dad")
+addWord("mad")
+search("pad") -> false
+search("bad") -> true
+search(".ad") -> true
+search("b..") -> true
+Note:
+You may assume that all words are consist of lowercase letters a-z.
+
+   Hide Hint #1  
+You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.
+
+*/
+
+
 class WordDictionary {
 
     
@@ -9,22 +35,25 @@ class WordDictionary {
     
     /** Adds a word into the data structure.*/
     public void addWord(String word) {
-        TrieNode node = root;
         
-        for(int c=0;c<word.length();i++) {
-            int j = word.charAt(i)-'a';
-            // Check Node Exists Or Not 
+     TrieNode tNode = root;
+    
+        for(int c=0;c<word.length();c++) {
             
-            if(node.children[j]==null) {
-                node.children[j]=new TrieNode();
+            int k = word.charAt(c)-'a';
+            
+            if(tNode.children[k]==null) {
+                tNode.children[k] = new TrieNode();
             }
+            tNode = tNode.children[k];
             
-            node = node.children[i];
             
-            }
+        }
         
-        node.isWord = false;
-        node.word = word;
+        tNode.word = word;
+        tNode.isWord = true;
+    
+    
         
     }
     
@@ -39,11 +68,11 @@ class WordDictionary {
     
     private boolean findAll(String word,int index, TrieNode node) {
         
-        if(index==word.length) {
-            return word.isWord;
+        if(index==word.length()) {
+            return node.isWord;
         }
         
-        if(word.charAt(i)=='.') {
+        if(word.charAt(index)=='.') {
             for(TrieNode c: node.children) {
                 if(c!=null && findAll(word,index+1,c)) {
                     return true;
@@ -62,13 +91,13 @@ class WordDictionary {
 
 class TrieNode {
     boolean isWord;
-    TrieNode[] childs;
+    TrieNode[] children;
     String word;
     
     TrieNode() {
         this.isWord = false;
         this.word = "";
-        this.childs = new TrieNode[26];
+        this.children = new TrieNode[26];
     }
 }
 
