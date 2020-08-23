@@ -35,6 +35,12 @@ Put the words into a trie, and manage a set of pointers within that trie.
 
 */
 
+
+
+// Explanation :- https://youtu.be/dm5r6iZUjkM
+
+
+
 class StreamChecker {
     
     Trie root;
