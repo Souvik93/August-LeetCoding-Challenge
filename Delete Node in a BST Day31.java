@@ -54,6 +54,9 @@ Another valid answer is [5,2,6,null,4,null,7].
  *     }
  * }
  */
+
+// Explanations : - https://youtu.be/m-CGG5Y4dG8 .
+
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
         
